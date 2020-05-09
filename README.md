@@ -7,19 +7,19 @@ Full name can have different length and words count (1-4 words) and words orde
 We expect to have a class and a unit test to cover all possible cases.
 
 Examples of names:
-ADLINE
-OLISEMEKA ADLINE
-ADLINE AGU OLISEMEKA
-ZAINAB, OLABISI ABDULSALAM
-Agu Adline
-ZAINAB OLABISI, Abdulsalam
+- ADLINE
+- OLISEMEKA ADLINE
+- ADLINE AGU OLISEMEKA
+- ZAINAB, OLABISI ABDULSALAM
+- Agu Adline
+- ZAINAB OLABISI, Abdulsalam
 
 Examples of valid names:
-IDOWU = IDOWU
-IDOWU EBUNOLUWA = EBUNOLUWA IDOWU
-IDOWU EBUNOLUWA = IDOWU EBUNOLUWA
-IDOWU SARAH EBUNOLUWA = EBUNOLUWA IDOWU
-IDOWU EBUNOLUWA SARAH = SARAH, EBUNOLUWA IDOWU
+- IDOWU = IDOWU
+- IDOWU EBUNOLUWA = EBUNOLUWA IDOWU
+- IDOWU EBUNOLUWA = IDOWU EBUNOLUWA
+- IDOWU SARAH EBUNOLUWA = EBUNOLUWA IDOWU
+- IDOWU EBUNOLUWA SARAH = SARAH, EBUNOLUWA IDOWU
 
 Algorithm:
 1. Compare the complete match of the rows. If there is a complete match, we return true

@@ -10,7 +10,7 @@ class NameComparatorTest extends TestCase
     public function testIsEqual()
     {
         $positive = [
-            ['ADLINE','ADLINE'],
+            ['IDOWU','IDOWU'],
             ['IDOWU EBUNOLUWA','EBUNOLUWA IDOWU'],
             ['IDOWU EBUNOLUWA','IDOWU EBUNOLUWA'],
             ['IDOWU SARAH EBUNOLUWA', 'EBUNOLUWA IDOWU'],
