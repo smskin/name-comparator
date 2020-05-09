@@ -1,0 +1,26 @@
+{
+    "name": "smskin/name-test",
+    "authors": [
+        {
+            "name": "SMSkin",
+            "email": "serg@msoinvest.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SMSkin\\NameComparator\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SMSkin\\NameComparator\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
