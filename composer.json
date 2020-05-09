@@ -1,5 +1,7 @@
 {
-    "name": "smskin/name-test",
+    "name": "smskin/name-comparator",
+    "description": "Name comparator library",
+    "license": "MIT",
     "authors": [
         {
             "name": "SMSkin",
