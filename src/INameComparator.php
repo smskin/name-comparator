@@ -4,5 +4,5 @@ namespace SMSkin\NameComparator;
 
 interface INameComparator
 {
-    public function isEqual(): bool;
+    public function isEqual(string $name1, string $name2): bool;
 }

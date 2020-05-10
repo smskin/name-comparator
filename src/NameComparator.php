@@ -4,59 +4,33 @@ namespace SMSkin\NameComparator;
 
 class NameComparator implements INameComparator
 {
-    /**
-     * @var string
-     */
-    protected $name1;
-
-    /**
-     * @var array
-     */
-    protected $name1Words;
-
-    /**
-     * @var string
-     */
-    protected $name2;
-
-    /**
-     * @var array
-     */
-    protected $name2Words;
-
-    public function __construct(string $name1, string $name2)
+    public function isEqual(string $name1, string $name2): bool
     {
-        $this->name1 = strtolower($name1);
-        $this->name2 = strtolower($name2);
-    }
-
-    public function isEqual(): bool
-    {
-        if ($this->isEqualStrings()){
+        if ($this->isEqualStrings($name1,$name2)){
             return true;
         }
 
-        $this->name1Words = $this->getWordsFromName($this->name1);
-        $this->name2Words = $this->getWordsFromName($this->name2);
+        $name1Words = $this->getWordsFromName($name1);
+        $name2Words = $this->getWordsFromName($name2);
 
-        if ($this->isEqualArrays()){
+        if ($this->isEqualArrays($name1Words, $name2Words)){
             return true;
         }
 
-        if ($this->isName2IsPartOfName1()){
+        if ($this->isName2IsPartOfName1($name1Words, $name2Words)){
             return true;
         }
 
-        $matchPercentage = $this->getMatchPercentage();
+        $matchPercentage = $this->getMatchPercentage($name1Words, $name2Words);
         if ($matchPercentage > 0.66){
             return true;
         }
         return false;
     }
 
-    private function isEqualStrings(): bool
+    private function isEqualStrings(string $name1, string $name2): bool
     {
-        return $this->name1 === $this->name2;
+        return $name1 === $name2;
     }
 
     private function getWordsFromName(string $name){
@@ -64,26 +38,28 @@ class NameComparator implements INameComparator
         return $matches[0];
     }
 
-    private function isEqualArrays(): bool
+    private function isEqualArrays(array $name1Words, array $name2Words): bool
     {
-        $diff1 = count(array_diff($this->name1Words, $this->name2Words));
-        $diff2 = count(array_diff($this->name2Words, $this->name1Words));
+        $diff1 = count(array_diff($name1Words, $name2Words));
+        $diff2 = count(array_diff($name2Words, $name1Words));
         return (!$diff1 && !$diff2);
     }
 
-    private function isName2IsPartOfName1(): bool
+    private function isName2IsPartOfName1(array $name1Words, array $name2Words): bool
     {
-        if (count($this->name2Words) >= count($this->name1Words)){
+        if (count($name2Words) >= count($name1Words)){
             return false;
         }
-        $diff = count(array_diff($this->name2Words, $this->name1Words));
+        $diff = count(array_diff($name2Words, $name1Words));
         return !$diff;
     }
 
-    private function getMatchPercentage(): float
+    private function getMatchPercentage(array $name1Words, array $name2Words): float
     {
-        $intersect = count(array_intersect($this->name1Words, $this->name2Words));
-        $max = (count($this->name1Words) > count($this->name2Words)) ? count($this->name1Words) : count($this->name2Words);
+        $intersect = count(array_intersect($name1Words, $name2Words));
+        $name1WordsCount = count($name1Words);
+        $name2WordsCount = count($name2Words);
+        $max = ($name1WordsCount > $name2WordsCount) ? $name1WordsCount : $name2WordsCount;
         return $intersect/$max;
     }
 }
