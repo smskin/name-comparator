@@ -118,6 +118,12 @@ class NameComparatorTest extends TestCase
 
         $result = $method->invokeArgs( $comparator, [
             ['IDOWU','SARAH','EBUNOLUWA'],
+            ['IDOWU']
+        ]);
+        $this->assertSame( true, $result);
+
+        $result = $method->invokeArgs( $comparator, [
+            ['IDOWU','SARAH','EBUNOLUWA'],
             ['EBUNOLUWA','YULIA']
         ]);
         $this->assertSame( false, $result);
@@ -159,6 +165,12 @@ class NameComparatorTest extends TestCase
         $result = $method->invokeArgs( $comparator, [
             ['IDOWU','SARAH','EBUNOLUWA'],
             ['MIKHAYLOV', 'SERGEY']
+        ]);
+        $this->assertSame( 0.0, $result);
+
+        $result = $method->invokeArgs( $comparator, [
+            ['IDOWU','SARAH','EBUNOLUWA'],
+            ['MIKHAYLOV', 'SERGEY', 'SERGEEVICH']
         ]);
         $this->assertSame( 0.0, $result);
     }
